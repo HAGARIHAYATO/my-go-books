@@ -7,6 +7,7 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
+	"google.golang.org/appengine"
 )
 
 // Book is defined by this file , and then is not used by anyfile
@@ -33,6 +34,7 @@ func main() {
 	g.PUT("/books/:id", updateBook)
 	g.DELETE("/books/:id", deleteBook)
 	e.Logger.Fatal(e.Start(":8000"))
+	appengine.Main()
 }
 
 func updateBook(c echo.Context) error {
