@@ -9,6 +9,7 @@ import (
 	"github.com/labstack/echo/middleware"
 )
 
+// Book is defined by this file , and then is not used by anyfile
 type Book struct {
 	gorm.Model
 	Title       string `gorm:"column:title"`
@@ -17,7 +18,7 @@ type Book struct {
 }
 
 func main() {
-	db, _ := gorm.Open("sqlite3", "gorm.db")
+	db, _ := gorm.Open("mysql", "root:roothagari@unix(/cloudsql/my-go-app-259011:asia-northeast1:myinstance)/myinstance")
 	defer db.Close()
 	db.AutoMigrate(&Book{})
 
@@ -34,24 +35,19 @@ func main() {
 	e.Logger.Fatal(e.Start(":8000"))
 }
 
-func dbOpen() {
-	db, _ := gorm.Open("sqlite3", "gorm.db")
-	defer db.Close()
-}
-
 func updateBook(c echo.Context) error {
-	db, _ := gorm.Open("sqlite3", "gorm.db")
+	db, _ := gorm.Open("mysql", "root:roothagari@unix(/cloudsql/my-go-app-259011:asia-northeast1:myinstance)/myinstance")
 	defer db.Close()
 
 	b := &Book{}
 	id := c.Param("id")
-	before :=  db.Find(&b, id)
+	before := db.Find(&b, id)
 	db.Save(&before)
 	return c.NoContent(http.StatusOK)
 }
 
 func deleteBook(c echo.Context) error {
-	db, _ := gorm.Open("sqlite3", "gorm.db")
+	db, _ := gorm.Open("mysql", "root:roothagari@unix(/cloudsql/my-go-app-259011:asia-northeast1:myinstance)/myinstance")
 	defer db.Close()
 
 	id := c.Param("id")
@@ -61,7 +57,7 @@ func deleteBook(c echo.Context) error {
 }
 
 func getBook(c echo.Context) error {
-	db, _ := gorm.Open("sqlite3", "gorm.db")
+	db, _ := gorm.Open("mysql", "root:roothagari@unix(/cloudsql/my-go-app-259011:asia-northeast1:myinstance)/myinstance")
 	defer db.Close()
 
 	id := c.Param("id")
@@ -71,7 +67,7 @@ func getBook(c echo.Context) error {
 }
 
 func allBooks(c echo.Context) error {
-	db, _ := gorm.Open("sqlite3", "gorm.db")
+	db, _ := gorm.Open("mysql", "root:roothagari@unix(/cloudsql/my-go-app-259011:asia-northeast1:myinstance)/myinstance")
 	defer db.Close()
 
 	var Books []Book
@@ -80,9 +76,9 @@ func allBooks(c echo.Context) error {
 }
 
 func createBook(c echo.Context) (err error) {
-	db, _ := gorm.Open("sqlite3", "gorm.db")
+	db, _ := gorm.Open("mysql", "root:roothagari@unix(/cloudsql/my-go-app-259011:asia-northeast1:myinstance)/myinstance")
 	defer db.Close()
-	
+
 	b := new(Book)
 	if err = c.Bind(b); err != nil {
 		return
