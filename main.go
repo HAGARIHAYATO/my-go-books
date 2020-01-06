@@ -19,7 +19,7 @@ type Book struct {
 }
 
 func main() {
-	db, _ := gorm.Open("mysql", "root:roothagari@unix(/cloudsql/my-go-app-259011:asia-northeast1:myinstance)/mybook")
+	db, _ := gorm.Open("mysql", "root:roothagari@cloudsql(my-go-app-259011:asia-northeast1:myinstance)/mybook")
 	defer db.Close()
 	db.AutoMigrate(&Book{})
 
@@ -38,7 +38,7 @@ func main() {
 }
 
 func updateBook(c echo.Context) error {
-	db, _ := gorm.Open("mysql", "root:roothagari@unix(/cloudsql/my-go-app-259011:asia-northeast1:myinstance)/mybook")
+	db, _ := gorm.Open("mysql", "root:roothagari@cloudsql(my-go-app-259011:asia-northeast1:myinstance)/mybook")
 	defer db.Close()
 
 	b := &Book{}
@@ -49,7 +49,7 @@ func updateBook(c echo.Context) error {
 }
 
 func deleteBook(c echo.Context) error {
-	db, _ := gorm.Open("mysql", "root:roothagari@unix(/cloudsql/my-go-app-259011:asia-northeast1:myinstance)/mybook")
+	db, _ := gorm.Open("mysql", "root:roothagari@cloudsql(my-go-app-259011:asia-northeast1:myinstance)/mybook")
 	defer db.Close()
 
 	id := c.Param("id")
@@ -59,7 +59,7 @@ func deleteBook(c echo.Context) error {
 }
 
 func getBook(c echo.Context) error {
-	db, _ := gorm.Open("mysql", "root:roothagari@unix(/cloudsql/my-go-app-259011:asia-northeast1:myinstance)/mybook")
+	db, _ := gorm.Open("mysql", "root:roothagari@cloudsql(my-go-app-259011:asia-northeast1:myinstance)/mybook")
 	defer db.Close()
 
 	id := c.Param("id")
@@ -69,7 +69,7 @@ func getBook(c echo.Context) error {
 }
 
 func allBooks(c echo.Context) error {
-	db, _ := gorm.Open("mysql", "root:roothagari@unix(/cloudsql/my-go-app-259011:asia-northeast1:myinstance)/mybook")
+	db, _ := gorm.Open("mysql", "root:roothagari@cloudsql(my-go-app-259011:asia-northeast1:myinstance)/mybook")
 	defer db.Close()
 
 	var Books []Book
@@ -78,7 +78,7 @@ func allBooks(c echo.Context) error {
 }
 
 func createBook(c echo.Context) (err error) {
-	db, _ := gorm.Open("mysql", "root:roothagari@unix(/cloudsql/my-go-app-259011:asia-northeast1:myinstance)/mybook")
+	db, _ := gorm.Open("mysql", "root:roothagari@cloudsql(my-go-app-259011:asia-northeast1:myinstance)/mybook")
 	defer db.Close()
 
 	b := new(Book)
