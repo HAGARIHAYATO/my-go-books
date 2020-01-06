@@ -1,7 +1,9 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
+	"os"
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
@@ -19,7 +21,16 @@ type Book struct {
 }
 
 func main() {
-	db, _ := gorm.Open("mysql", "root:roothagari@unix(/cloudsql/my-go-app-259011:asia-northeast1:myinstance)/mybook")
+	var (
+		connectionName = os.Getenv("CLOUDSQL_CONNECTION_NAME")
+		user           = os.Getenv("CLOUDSQL_USER")
+		password       = os.Getenv("CLOUDSQL_PASSWORD")
+		database       = os.Getenv("CLOUDSQL_DATABASE")
+	)
+	db, err := gorm.Open("mysql", fmt.Sprintf("%s:%s@unix(/cloudsql/%s)/%s", user, password, connectionName, database))
+	if err != nil {
+		panic(err)
+	}
 	defer db.Close()
 	db.AutoMigrate(&Book{})
 
