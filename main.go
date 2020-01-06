@@ -49,7 +49,10 @@ func main() {
 }
 
 func updateBook(c echo.Context) error {
-	db, _ := gorm.Open("mysql", "root:roothagari@unix(/cloudsql/my-go-app-259011:asia-northeast1:myinstance)/mybook")
+	db, err := gorm.Open("mysql", "root:roothagari@unix(/cloudsql/my-go-app-259011:asia-northeast1:myinstance)/mybook")
+	if err != nil {
+		panic(err)
+	}
 	defer db.Close()
 
 	b := &Book{}
@@ -60,7 +63,10 @@ func updateBook(c echo.Context) error {
 }
 
 func deleteBook(c echo.Context) error {
-	db, _ := gorm.Open("mysql", "root:roothagari@unix(/cloudsql/my-go-app-259011:asia-northeast1:myinstance)/mybook")
+	db, err := gorm.Open("mysql", "root:roothagari@unix(/cloudsql/my-go-app-259011:asia-northeast1:myinstance)/mybook")
+	if err != nil {
+		panic(err)
+	}
 	defer db.Close()
 
 	id := c.Param("id")
@@ -70,7 +76,10 @@ func deleteBook(c echo.Context) error {
 }
 
 func getBook(c echo.Context) error {
-	db, _ := gorm.Open("mysql", "root:roothagari@unix(/cloudsql/my-go-app-259011:asia-northeast1:myinstance)/mybook")
+	db, err := gorm.Open("mysql", "root:roothagari@unix(/cloudsql/my-go-app-259011:asia-northeast1:myinstance)/mybook")
+	if err != nil {
+		panic(err)
+	}
 	defer db.Close()
 
 	id := c.Param("id")
@@ -80,7 +89,10 @@ func getBook(c echo.Context) error {
 }
 
 func allBooks(c echo.Context) error {
-	db, _ := gorm.Open("mysql", "root:roothagari@unix(/cloudsql/my-go-app-259011:asia-northeast1:myinstance)/mybook")
+	db, err := gorm.Open("mysql", "root:roothagari@unix(/cloudsql/my-go-app-259011:asia-northeast1:myinstance)/mybook")
+	if err != nil {
+		panic(err)
+	}
 	defer db.Close()
 
 	var Books []Book
@@ -89,7 +101,10 @@ func allBooks(c echo.Context) error {
 }
 
 func createBook(c echo.Context) (err error) {
-	db, _ := gorm.Open("mysql", "root:roothagari@unix(/cloudsql/my-go-app-259011:asia-northeast1:myinstance)/mybook")
+	db, err := gorm.Open("mysql", "root:roothagari@unix(/cloudsql/my-go-app-259011:asia-northeast1:myinstance)/mybook")
+	if err != nil {
+		panic(err)
+	}
 	defer db.Close()
 
 	b := new(Book)
