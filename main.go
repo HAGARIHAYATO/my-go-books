@@ -7,6 +7,7 @@ import (
 	"github.com/jinzhu/gorm"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
+	"github.com/spf13/cast"
 	"google.golang.org/appengine"
 )
 
@@ -54,10 +55,15 @@ func updateBook(c echo.Context) error {
 	}
 	defer db.Close()
 
-	b := &Book{}
+	b := new(Book)
+	if err = c.Bind(b); err != nil {
+		return echo.ErrBadRequest
+	}
+
 	id := c.Param("id")
-	before := db.Find(&b, id)
-	db.Save(&before)
+	b.ID = cast.ToUint(id)
+
+	db.Save(&b)
 	return c.NoContent(http.StatusOK)
 }
 
@@ -88,9 +94,9 @@ func getBook(c echo.Context) error {
 	defer db.Close()
 
 	id := c.Param("id")
-	var Book Book
-	book := db.Find(&Book, id)
-	return c.JSON(http.StatusOK, book)
+	var b Book
+	db.First(&b, id)
+	return c.JSON(http.StatusOK, b)
 }
 
 func allBooks(c echo.Context) error {
