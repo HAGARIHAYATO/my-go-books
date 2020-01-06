@@ -36,7 +36,8 @@ func main() {
 	g.GET("/books/:id", getBook)
 	g.PUT("/books/:id", updateBook)
 	g.DELETE("/books/:id", deleteBook)
-	e.Logger.Fatal(e.Start(":8000"))
+	// e.Logger.Fatal(e.Start(":8000"))
+	http.Handle("/", e)
 	appengine.Main()
 }
 
