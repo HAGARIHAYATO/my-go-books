@@ -13,4 +13,4 @@ env_variables:
   CLOUDSQL_CONNECTION_NAME: my-go-app-259011:asia-northeast1:myinstance
   CLOUDSQL_USER: root
   CLOUDSQL_PASSWORD: roothagari
-  CLOUDSQL_DATABASE: testdb
+  CLOUDSQL_DATABASE: mybook
