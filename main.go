@@ -1,9 +1,7 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
-	"os"
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
@@ -21,13 +19,7 @@ type Book struct {
 }
 
 func main() {
-	var (
-		connectionName = os.Getenv("CLOUDSQL_CONNECTION_NAME")
-		user           = os.Getenv("CLOUDSQL_USER")
-		password       = os.Getenv("CLOUDSQL_PASSWORD")
-		database       = os.Getenv("CLOUDSQL_DATABASE")
-	)
-	db, err := gorm.Open("mysql", fmt.Sprintf("%s:%s@unix(/cloudsql/%s)/%s", user, password, connectionName, database))
+	db, err := gorm.Open("mysql", "root:roothagari@unix(/cloudsql/my-go-app-259011:asia-northeast1:myinstance)/mybook")
 	if err != nil {
 		panic(err)
 	}
@@ -109,7 +101,7 @@ func createBook(c echo.Context) (err error) {
 
 	b := new(Book)
 	if err = c.Bind(b); err != nil {
-		return
+		return echo.ErrBadRequest
 	}
 	db.Create(&b)
 	return c.JSON(http.StatusOK, b)
