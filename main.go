@@ -20,7 +20,7 @@ type Book struct {
 }
 
 func main() {
-	db, err := gorm.Open("mysql", "root:roothagari@unix(/cloudsql/my-go-app-259011:asia-northeast1:myinstance)/mybook")
+	db, err := gorm.Open("mysql", "root:roothagari@unix(/cloudsql/my-go-app-259011:asia-northeast1:myinstance)/mybook?parseTime=true")
 	if appengine.IsDevAppServer() {
 		db, err = gorm.Open("mysql", "root:roothagari@tcp(127.0.0.1:3306)/mybook?charset=utf8&parseTime=True&loc=Local")
 	}
@@ -46,7 +46,7 @@ func main() {
 }
 
 func updateBook(c echo.Context) error {
-	db, err := gorm.Open("mysql", "root:roothagari@unix(/cloudsql/my-go-app-259011:asia-northeast1:myinstance)/mybook")
+	db, err := gorm.Open("mysql", "root:roothagari@unix(/cloudsql/my-go-app-259011:asia-northeast1:myinstance)/mybook?parseTime=true")
 	if appengine.IsDevAppServer() {
 		db, err = gorm.Open("mysql", "root:roothagari@tcp(127.0.0.1:3306)/mybook?charset=utf8&parseTime=True&loc=Local")
 	}
@@ -68,7 +68,7 @@ func updateBook(c echo.Context) error {
 }
 
 func deleteBook(c echo.Context) error {
-	db, err := gorm.Open("mysql", "root:roothagari@unix(/cloudsql/my-go-app-259011:asia-northeast1:myinstance)/mybook")
+	db, err := gorm.Open("mysql", "root:roothagari@unix(/cloudsql/my-go-app-259011:asia-northeast1:myinstance)/mybook?parseTime=true")
 	if appengine.IsDevAppServer() {
 		db, err = gorm.Open("mysql", "root:roothagari@tcp(127.0.0.1:3306)/mybook?charset=utf8&parseTime=True&loc=Local")
 	}
@@ -84,7 +84,7 @@ func deleteBook(c echo.Context) error {
 }
 
 func getBook(c echo.Context) error {
-	db, err := gorm.Open("mysql", "root:roothagari@unix(/cloudsql/my-go-app-259011:asia-northeast1:myinstance)/mybook")
+	db, err := gorm.Open("mysql", "root:roothagari@unix(/cloudsql/my-go-app-259011:asia-northeast1:myinstance)/mybook?parseTime=true")
 	if appengine.IsDevAppServer() {
 		db, err = gorm.Open("mysql", "root:roothagari@tcp(127.0.0.1:3306)/mybook?charset=utf8&parseTime=True&loc=Local")
 	}
@@ -100,7 +100,7 @@ func getBook(c echo.Context) error {
 }
 
 func allBooks(c echo.Context) error {
-	db, err := gorm.Open("mysql", "root:roothagari@unix(/cloudsql/my-go-app-259011:asia-northeast1:myinstance)/mybook")
+	db, err := gorm.Open("mysql", "root:roothagari@unix(/cloudsql/my-go-app-259011:asia-northeast1:myinstance)/mybook?parseTime=true")
 	if appengine.IsDevAppServer() {
 		db, err = gorm.Open("mysql", "root:roothagari@tcp(127.0.0.1:3306)/mybook?charset=utf8&parseTime=True&loc=Local")
 	}
@@ -115,7 +115,7 @@ func allBooks(c echo.Context) error {
 }
 
 func createBook(c echo.Context) (err error) {
-	db, err := gorm.Open("mysql", "root:roothagari@unix(/cloudsql/my-go-app-259011:asia-northeast1:myinstance)/mybook")
+	db, err := gorm.Open("mysql", "root:roothagari@unix(/cloudsql/my-go-app-259011:asia-northeast1:myinstance)/mybook?parseTime=true")
 	if appengine.IsDevAppServer() {
 		db, err = gorm.Open("mysql", "root:roothagari@tcp(127.0.0.1:3306)/mybook?charset=utf8&parseTime=True&loc=Local")
 	}
